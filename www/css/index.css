@@ -1,0 +1,224 @@
+* {
+    margin:0;
+    padding: 0;
+    border:none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+ul {
+    list-style: none;
+}
+.clear {
+    line-height: 0;
+    height:0;
+    font-size: 0;
+    clear:both;
+}
+html {
+    height:100%;
+    position: relative;
+}
+body {
+    background:#020202 url(../images/mapping/index_bg.jpg) 50% 0 no-repeat;
+    height: 100%;
+    font-family: Arial;
+}
+#wrapper {
+    width:100%;
+    height:100%;
+    position: relative;
+}
+#header {
+    vertical-align: middle;
+    text-align: center;
+    height:143px
+}
+#header-inner {
+    width:1000px;
+    margin:0 auto;
+    text-align: left;
+}
+#promo {
+    vertical-align: middle;
+    text-align: center;
+    height:651px
+}
+#promo-inner {
+    width:1000px;
+    height:651px;
+    text-align: left;
+    margin:0 auto;
+    position: relative;
+}
+#content {
+    vertical-align: middle;
+    text-align: center;
+}
+#content-inner {
+    width:1000px;
+    text-align: left;
+    margin:0 auto;
+    position: relative;
+}
+#content .separator-big {
+    height:2px;
+    line-height: 0;
+    font-size: 0;
+    background:url(../images/mapping/separator_big.jpg) 50% 50% no-repeat;
+    float: left;
+    width:1000px;
+    margin-top: 65px;
+}
+#content .separator-small {
+    height:2px;
+    line-height: 0;
+    font-size: 0;
+    background:url(../images/mapping/separator_small.jpg) 50% 50% no-repeat;
+    float: left;
+    width:1000px;
+    margin-bottom: 30px;
+}
+#footer {
+    height:98px;
+    vertical-align: top;
+    text-align: center;
+    font-size: 12px;
+    line-height: 12px;
+}
+#footer-inner {
+    height:98px;
+    color:#c1c0c0;
+}
+#menu-bottom {
+    width:555px;
+    margin:0 auto;
+    height:113px;
+    position: relative;
+    overflow: hidden;
+}
+#menu-bottom li {
+    float: left;
+    height:113px;
+    line-height: 113px;
+}
+#menu-bottom li a {
+    display: block;
+    float: left;
+    height:113px;
+    line-height: 113px;
+    padding:0 20px;
+    font-family: Tahoma;
+    font-size: 12px;
+    color:#c1c0c0;
+    text-decoration: none;
+}
+#menu-top a {
+    text-decoration: none;
+}
+#menu-top .auth {
+    height:87px;
+    width:443px;
+    float: left;
+    position: relative;
+}
+#menu-top .help {
+    height:46px;
+    width:507px;
+    float: left;
+    padding:20.5px 0 20.5px 50px;
+}
+#menu-top .auth .register {
+    height:87px;
+    width:274px;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 2;
+    display: block;
+    background:url(../images/mapping/register.png) 0 0 no-repeat;
+}
+#menu-top .auth .register:hover {
+    background-position: 0 -87px;
+}
+#menu-top .auth .login {
+    display: block;
+    height:87px;
+    width:274px;
+    position: absolute;
+    top:0;
+    right:0;
+    z-index: 1;
+    background:url(../images/mapping/enter.png) 0 0 no-repeat;
+}
+#menu-top .auth .login:hover {
+    background-position: 0 -87px;
+}
+#menu-top .help li a {
+    display: block;
+    margin-left: 40px;
+    float: left;
+    height:46px;
+}
+#menu-top .help li {
+    float: left;
+    line-height: 46px;
+}
+#menu-top .help li a {
+    display: block;
+    float: left;
+    height:46px;
+    padding-left:56px;
+    line-height: 46px;
+    color:#c3c3c3;
+    font-size: 14px;
+    font-family: Arial;
+    text-decoration: underline;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+#menu-top .help li a:hover {
+    background-position: 0 -46px;
+    text-decoration: none;
+}
+#menu-top .help li a.regulations {
+    background-image: url(../images/mapping/regulations.png);
+}
+#menu-top .help li a.feedback {
+    background-image: url(../images/mapping/feedback.png);
+}
+#slider-outer {
+    width:474px;
+    height:276px;
+    position: relative;
+    float: left;
+    margin-top:215px;
+    margin-left: 30px;
+}
+#slider-prev {
+    background:url(../images/mapping/slider-buttons.png) 0 -62px no-repeat;
+    width:20px;
+    height:62px;
+    position: absolute;
+    top:107px;
+    left:0;
+}
+#slider-next {
+    background:url(../images/mapping/slider-buttons.png) 0 0 no-repeat;
+    width:20px;
+    height:62px;
+    position: absolute;
+    top:107px;
+    right:0;
+}
+#slider {
+    width:324px;
+    height:206px;
+    margin:0 75px;
+    float: left;
+}
+
+input.error {
+    color: red !important;
+}

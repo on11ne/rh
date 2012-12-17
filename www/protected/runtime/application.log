@@ -1,0 +1,51 @@
+2012/12/16 14:32:43 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "C:\Workspace\rh-moneyback.ru\Development\www\assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CAssetManager.php:128
+Stack trace:
+#0 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CAssetManager.php(113): CAssetManager->setBasePath('C:\Workspace\rh...')
+#1 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CAssetManager.php(235): CAssetManager->getBasePath()
+#2 C:\Workspace\rh-moneyback.ru\Development\yii\framework\gii\GiiModule.php(143): CAssetManager->publish('C:\Workspace\rh...')
+#3 C:\Workspace\rh-moneyback.ru\Development\yii\framework\base\CComponent.php(112): GiiModule->getAssetsUrl()
+#4 C:\Workspace\rh-moneyback.ru\Development\yii\framework\base\CModule.php(106): CComponent->__get('assetsUrl')
+#5 C:\Workspace\rh-moneyback.ru\Development\yii\framework\gii\views\layouts\main.php(5): CModule->__get('assetsUrl')
+#6 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CBaseController.php(127): require('C:\Workspace\rh...')
+#7 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Workspace\rh...', Array, true)
+#8 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\widgets\CContentDecorator.php(77): CBaseController->renderFile('C:\Workspace\rh...', Array, true)
+#9 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\widgets\CContentDecorator.php(55): CContentDecorator->decorate('<div class="con...')
+#10 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\widgets\COutputProcessor.php(45): CContentDecorator->processOutput('<div class="con...')
+#11 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CBaseController.php(207): COutputProcessor->run()
+#12 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#13 C:\Workspace\rh-moneyback.ru\Development\yii\framework\gii\views\layouts\column1.php(7): CBaseController->endContent()
+#14 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CBaseController.php(127): require('C:\Workspace\rh...')
+#15 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\Workspace\rh...', Array, true)
+#16 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CController.php(785): CBaseController->renderFile('C:\Workspace\rh...', Array, true)
+#17 C:\Workspace\rh-moneyback.ru\Development\yii\framework\gii\controllers\DefaultController.php(47): CController->render('login', Array)
+#18 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\actions\CInlineAction.php(50): DefaultController->actionLogin()
+#19 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#20 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#21 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#23 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('gii/default/log...')
+#24 C:\Workspace\rh-moneyback.ru\Development\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#25 C:\Workspace\rh-moneyback.ru\Development\www\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/index.php?r=gii/default/login
+---
+2012/12/16 16:49:03 [error] [exception.CException] exception 'CException' with message 'Property "UserIdentity.email" is not defined.' in C:\Workspace\rh-moneyback.ru\Development\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 C:\Workspace\rh-moneyback.ru\Development\www\protected\components\UserIdentity.php(20): CComponent->__get('email')
+#1 C:\Workspace\rh-moneyback.ru\Development\www\protected\models\LoginForm.php(54): UserIdentity->authenticate()
+#2 C:\Workspace\rh-moneyback.ru\Development\yii\framework\validators\CInlineValidator.php(43): LoginForm->authenticate('password', Array)
+#3 C:\Workspace\rh-moneyback.ru\Development\yii\framework\validators\CValidator.php(214): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#4 C:\Workspace\rh-moneyback.ru\Development\yii\framework\base\CModel.php(158): CValidator->validate(Object(LoginForm), NULL)
+#5 C:\Workspace\rh-moneyback.ru\Development\www\protected\controllers\SiteController.php(71): CModel->validate()
+#6 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#7 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#9 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#11 C:\Workspace\rh-moneyback.ru\Development\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#12 C:\Workspace\rh-moneyback.ru\Development\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 C:\Workspace\rh-moneyback.ru\Development\www\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://rh.local/index.php?r=site/login
+---
