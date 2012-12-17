@@ -384,7 +384,10 @@ body {
 	
 }
 
-input.error {
+div.error input {
     color: red !important;
 }
 
+div.error label {
+    color: red !important;
+}

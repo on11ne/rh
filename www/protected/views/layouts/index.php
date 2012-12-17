@@ -27,11 +27,19 @@
                 <div class="clear"></div>
                 <div id="menu-top">
                     <div class="auth">
+                        <?php if(Yii::app()->user->isGuest) : ?>
                         <a class="fancybox register" href="#register"></a>
                         <a class="fancybox login" href="#login"></a>
+                        <?php endif; ?>
                     </div>
                     <div class="help">
                         <ul>
+                            <?php if(!Yii::app()->user->isGuest) : ?>
+                            <li>
+                                <a class="purchase" href="<?php echo Yii::app()->createUrl('cheque/create'); ?>">Регистрация покупки</a>
+                            </li>
+                            <?php endif; ?>
+
                             <li>
                                 <a class="regulations" href="<?php echo Yii::app()->createUrl("site/regulations"); ?>">Правила акции</a>
                             </li>

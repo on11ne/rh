@@ -222,3 +222,11 @@ body {
 input.error {
     color: red !important;
 }
+
+div.error input {
+    color: red !important;
+}
+
+div.error label {
+    color: red !important;
+}

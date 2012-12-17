@@ -26,6 +26,10 @@ $this->menu=array(
 		'title',
 		'price',
 		'description',
-		'image',
+        array(
+            'label' => 'Изображение',
+            'type' => 'raw',
+            'value' => CHtml::image('/images/products/' . $model->image, "image")
+        ),
 	),
 )); ?>

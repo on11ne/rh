@@ -9,10 +9,21 @@
     Yii::app()->clientScript->registerPackage('fancybox');
     Yii::app()->clientScript->registerPackage('carousel');
     Yii::app()->clientScript->registerPackage('mask');
+    Yii::app()->clientScript->registerScriptFile('/js/flash-messages.js', CClientScript::POS_BEGIN);
     ?>
 
 </head>
 <body>
+
+<?php
+$flashMessages = Yii::app()->user->getFlashes();
+
+if ($flashMessages)
+    foreach($flashMessages as $key => $message)
+        echo '<div class="' . $key . '" style="display:none;">' . $message . "</div>\n";
+
+?>
+
 <table id="wrapper">
 
     <?php echo $content; ?>
@@ -25,6 +36,7 @@
         </td>
     </tr>
 </table>
+
 <div style="display: none;">
     <div id="login">
         <h1>Авторизация <br> пользователя</h1>
@@ -35,7 +47,8 @@
 
         $form = $this->beginWidget('CActiveForm', array(
             'id'=>'login-form',
-            'enableClientValidation' => true,
+            'enableAjaxValidation' => true,
+            'action' => Yii::app()->createUrl('site/login'),
             'clientOptions' => array(
                 'validateOnSubmit' => true,
             )));
@@ -43,17 +56,15 @@
         <div class="row">
             <?php echo $form->labelEx($model,'email'); ?>
             <?php echo $form->textField($model, 'email', array('class' => ($model->getError('email')  ? 'error' : ''))); ?>
+            <?php echo $form->error($model, 'email', array('hideErrorMessage' => true)); ?>
         </div>
         <div class="row">
             <?php echo $form->labelEx($model, 'password'); ?>
             <?php echo $form->passwordField($model, 'password', array('class' => ($model->getError('email')  ? 'error' : ''))); ?>
+            <?php echo $form->error($model, 'password', array('hideErrorMessage' => true)); ?>
         </div>
         <div class="row buttons">
-        <?php echo CHtml::ajaxSubmitButton('',
-            Yii::app()->createUrl('site/login'),
-            array('update' => '#register')
-        );
-        ?>
+            <?php echo CHtml::submitButton(''); ?>
         </div>
 
         <?php $this->endWidget(); ?>
@@ -73,33 +84,41 @@
 
         $form = $this->beginWidget('CActiveForm', array(
             'id'=>'register-form',
-            'enableClientValidation' => true,
+            'enableAjaxValidation' => true,
+            'action' => Yii::app()->createUrl('site/register'),
             'clientOptions' => array(
                 'validateOnSubmit' => true,
             )));
         ?>
-            <div class="row">
-                <?php echo $form->labelEx($model,'name'); ?>
-                <?php echo $form->textField($model, 'name', array('class' => ($model->getError('name')  ? 'error' : ''))); ?>
-            </div>
-            <div class="row">
-                <?php echo $form->labelEx($model,'email'); ?>
-                <?php echo $form->textField($model, 'email', array('class' => ($model->getError('email')  ? 'error' : ''))); ?>
-            </div>
-            <div class="row">
-                <?php echo $form->labelEx($model,'phone'); ?>
-                <?php echo $form->textField($model, 'phone', array('class' => ($model->getError('phone')  ? 'phone error' : 'phone'))); ?>
-            </div>
-            <div class="row">
-                <?php echo $form->labelEx($model, 'password'); ?>
-                <?php echo $form->passwordField($model, 'password', array('class' => ($model->getError('email')  ? 'error' : ''))); ?>
-            </div>
-            <div class="row buttons">
-                <?php echo CHtml::ajaxSubmitButton('',
-                Yii::app()->createUrl('site/register'),
-                array('update' => '#register')
-            ); ?>
-            </div>
+        <div class="row">
+            <?php echo $form->labelEx($model,'name'); ?>
+            <?php echo $form->textField($model, 'name', array('class' => ($model->getError('name')  ? 'error' : ''))); ?>
+            <?php echo $form->error($model, 'name', array('hideErrorMessage' => true)); ?>
+        </div>
+        <div class="row">
+            <?php echo $form->labelEx($model,'email'); ?>
+            <?php echo $form->textField($model, 'email', array('class' => ($model->getError('email')  ? 'error' : ''))); ?>
+            <?php echo $form->error($model, 'email', array('hideErrorMessage' => true)); ?>
+        </div>
+        <div class="row">
+            <?php echo $form->labelEx($model,'phone'); ?>
+            <?php echo $form->textField($model, 'phone', array('class' => ($model->getError('phone')  ? 'phone error' : 'phone'))); ?>
+            <?php echo $form->error($model, 'phone', array('hideErrorMessage' => true)); ?>
+        </div>
+        <div class="row">
+            <?php echo $form->labelEx($model, 'password'); ?>
+            <?php echo $form->passwordField($model, 'password', array('class' => ($model->getError('email')  ? 'error' : ''))); ?>
+            <?php echo $form->error($model, 'password', array('hideErrorMessage' => true)); ?>
+        </div>
+        <div class="checkbox">
+            <?php echo $form->checkBox($model, 'agree', array('value' => 1)); ?>
+            <label for="User_agree">Принимаю <a href="<?php echo Yii::app()->createUrl('site/regulatuions'); ?>" title="условия акции">условия акции</a></label>
+            <?php echo $form->error($model, 'agree', array('hideErrorMessage' => true)); ?>
+            <div class="clr"></div>
+        </div>
+        <div class="row buttons">
+            <?php echo CHtml::submitButton('') ?>
+        </div>
         <?php $this->endWidget(); ?>
         <div class="clear"></div>
     </div>

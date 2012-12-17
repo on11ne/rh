@@ -26,7 +26,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('image')); ?>:</b>
-	<?php echo CHtml::encode($data->image); ?>
+	<?php echo CHtml::image("/images/products/" . $data->image, "image"); ?>
 	<br />
 
 

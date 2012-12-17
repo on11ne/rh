@@ -7,8 +7,8 @@
  */
 class UserIdentity extends CUserIdentity
 {
-    public $email;
-    public $password;
+
+    private $_id;
 
 	/**
 	 * Authenticates a user.
@@ -20,19 +20,27 @@ class UserIdentity extends CUserIdentity
 	 */
     public function authenticate() {
 
-        $record = User::model()->findByAttributes(array('email' => $this->email));
+        $record = User::model()->findByAttributes(array('email' => $this->username));
+//        var_dump($record);
 
         if($record === null)
             $this->errorCode = self::ERROR_USERNAME_INVALID;
         else if($record->password!==md5($this->password . Yii::app()->params['salt']))
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
-        else if($record->status != 2)
+        else if($record->status != 1)
             $this->errorCode=self::ERROR_UNKNOWN_IDENTITY;
         else {
+            $this->_id=$record->id;
             $this->setState('email', $record->email);
             $this->errorCode=self::ERROR_NONE;
         }
 
         return !$this->errorCode;
     }
+
+    public function getId()
+    {
+        return $this->_id;
+    }
+
 }

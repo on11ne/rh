@@ -264,6 +264,24 @@
     padding:0 10px;
     color:#555555;
 }
+
+#register .checkbox {
+    width:427px;
+    float: left;
+    clear: both;
+}
+#register .checkbox label {
+    float: left;
+    line-height: 40px;
+    width: 230px;
+}
+#register .checkbox input {
+    color: #555555;
+    height: 40px;
+    margin-bottom: 36px;
+    margin-left: 20px;
+}
+
 #login .row.buttons input, #register .row.buttons input {
     width:227px;
     height:42px;

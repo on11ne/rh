@@ -46,10 +46,21 @@ class Cheque extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, product_id, store_title, phone, image, registered_date', 'required'),
-			array('user_id, product_id, status', 'numerical', 'integerOnly'=>true),
-			array('store_title, phone, image', 'length', 'max'=>255),
-			array('store_address', 'safe'),
+			array('user_id, product_id, store_title, phone, image', 'required'),
+
+            array('store_title', 'match', 'pattern'=>'/^([\x{0410}-\x{042F}\s0-9\-]){3,32}$/iu'),
+
+            array('store_address', 'match', 'pattern'=>'/^([\x{0410}-\x{042F}\s0-9\-,]){3,32}$/iu'),
+
+            array('product_id', 'exist', 'className' => 'Product', 'attributeName' => 'id'),
+
+            array('user_id', 'exist', 'className' => 'User', 'attributeName' => 'id'),
+
+            array('phone', 'match', 'pattern'=>'/^\+7\s\(?[0-9]{3}\)?|[0-9]{3}[-. ]? [0-9]{3}[-. ]?[0-9]{4}$/'),
+
+            array('image', 'file', 'on'=>'create', 'maxSize' => 3000000, 'types' => 'jpg, png, gif'),
+            array('image', 'file', 'on'=>'update', 'allowEmpty' => true, 'maxSize' => 3000000, 'types' => 'jpg, png, gif'),
+
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, user_id, product_id, store_title, store_address, phone, image, status, registered_date', 'safe', 'on'=>'search'),
@@ -64,8 +75,8 @@ class Cheque extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'product' => array(self::BELONGS_TO, 'TblProducts', 'product_id'),
-			'user' => array(self::BELONGS_TO, 'TblUsers', 'user_id'),
+			'product' => array(self::BELONGS_TO, 'Product', 'product_id'),
+			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -76,14 +87,14 @@ class Cheque extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
-			'product_id' => 'Product',
-			'store_title' => 'Store Title',
-			'store_address' => 'Store Address',
-			'phone' => 'Phone',
-			'image' => 'Image',
-			'status' => 'Status',
-			'registered_date' => 'Registered Date',
+			'user_id' => 'Пользователь',
+			'product_id' => 'Устройство',
+			'store_title' => 'Название магазина',
+			'store_address' => 'Адрес магазина',
+			'phone' => 'Мобильный телефон',
+			'image' => 'Фотография чека',
+			'status' => 'Статус',
+			'registered_date' => 'Дата регистрации',
 		);
 	}
 

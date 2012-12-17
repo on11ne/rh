@@ -12,13 +12,14 @@
  * @property string $activation_key
  * @property integer $status
  * @property string $registered_date
- *
- * The followings are the available model relations:
- * @property TblCheques[] $tblCheques
- * @property TblFeedback[] $tblFeedbacks
  */
 class User extends CActiveRecord
 {
+
+    const NOT_ACTIVATED = 0;
+    const NOT_MODERATED = 1;
+    const MODERATED = 2;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -45,13 +46,26 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, email, phone, password, registered_date', 'required'),
-			array('status', 'numerical', 'integerOnly'=>true),
-			array('name, email, password, activation_key', 'length', 'max'=>255),
-			array('phone', 'length', 'max'=>15),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, email, phone, password, activation_key, status, registered_date', 'safe', 'on'=>'search'),
+
+            array('email, password, name, agree, phone', 'required'),
+
+            array('email', 'email'),
+            array('email', 'length', "min" => 3, "max" => 32),
+            array('email', 'unique', 'className' => 'User'),
+
+            array('password', 'length', "min" => 6, "max" => 32),
+            array('password', 'match', 'pattern'=>'/^([a-z0-9_])+$/i'),
+
+            array('name', 'match', 'pattern'=>'/^([\x{0410}-\x{042F}\s]){3,32}$/iu'),
+
+            array('phone', 'match', 'pattern'=>'/^\+7\s\(?[0-9]{3}\)?|[0-9]{3}[-. ]? [0-9]{3}[-. ]?[0-9]{4}$/'),
+            array('phone', 'unique', 'className' => 'User', 'attributeName' => 'phone'),
+
+            array('agree', 'compare', 'compareValue' => 1, 'message' => 'Вы должны подтвердить согласие с условиями акции'),
+
+			array('status', 'numerical', 'integerOnly' => true),
+
+			array('id, name, email, phone, password, activation_key, status, registered_date, agree', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,8 +77,8 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tblCheques' => array(self::HAS_MANY, 'TblCheques', 'user_id'),
-			'tblFeedbacks' => array(self::HAS_MANY, 'TblFeedback', 'user_id'),
+			'Cheque' => array(self::HAS_MANY, 'Cheque', 'user_id'),
+			'Feedback' => array(self::HAS_MANY, 'Feedback', 'user_id'),
 		);
 	}
 
@@ -82,8 +96,17 @@ class User extends CActiveRecord
 			'activation_key' => 'Ключ активации',
 			'status' => 'Статус',
 			'registered_date' => 'Дата регистрации',
+            'agree' => 'Согласие с условиями акции',
 		);
 	}
+
+    public function beforeSave() {
+
+        if (!empty($this->password) && $this->status == 0)
+            $this->password = md5($this->password . Yii::app()->params['salt']);
+
+        return true;
+    }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -104,6 +127,7 @@ class User extends CActiveRecord
 		$criteria->compare('activation_key',$this->activation_key,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('registered_date',$this->registered_date,true);
+        $criteria->compare('agree',$this->agree,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

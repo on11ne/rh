@@ -90,10 +90,27 @@ return array(
                     ),
                     'depends' => array('jquery')
                 ),
+                'scrollpane' => array(
+                    'baseUrl'=>'/',
+                    'js' => array(
+                        'js/jScrollPane.js'
+                    ),
+                    'css' => array(
+                        'css/jscrollpane.css'
+                    ),
+                    'depends' => array('jquery')
+                ),
                 'carousel' => array(
                     'baseUrl'=>'/',
                     'js' => array(
                         'js/jquery.carouFredSel-6.1.0-packed.js'
+                    ),
+                    'depends' => array('jquery')
+                ),
+                'filestyle' => array(
+                    'baseUrl'=>'/',
+                    'js' => array(
+                        'js/jquery.filestyle.mini.js'
                     ),
                     'depends' => array('jquery')
                 ),
@@ -114,15 +131,27 @@ return array(
                     ),
                     'depends' => array('jquery')
                 ),
+                'inner' => array(
+                    'baseUrl'=>'/',
+                    'js' => array(
+                        'js/script.js'
+                    ),
+                    'css' => array(
+                        'css/inner.css'
+                    ),
+                    'depends' => array('jquery')
+                ),
             ),
         ),
 	),
-
+    'sourceLanguage'    =>'ru',
+    'language'          =>'ru',
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'denis@e-produce.ru',
+        'moderatorEmail'=>'denis@e-produce.ru',
         'salt' => 'dhf9dsa79A9a0&*'
 	),
 );

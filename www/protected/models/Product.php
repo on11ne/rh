@@ -44,7 +44,8 @@ class Product extends CActiveRecord
 		return array(
 			array('sku, title, price', 'required'),
 			array('sku', 'length', 'max'=>16),
-			array('title, image', 'length', 'max'=>255),
+            array('image', 'file', 'types' => 'jpg, gif, png', 'allowEmpty' => true, 'on' => 'update'),
+            array('image', 'file', 'types' => 'jpg, gif, png', 'allowEmpty' => false, 'on' => 'create'),
 			array('price', 'length', 'max'=>15),
 			array('description', 'safe'),
 			// The following rule is used by search().
@@ -61,7 +62,7 @@ class Product extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tblCheques' => array(self::HAS_MANY, 'TblCheques', 'product_id'),
+			'Cheque' => array(self::HAS_MANY, 'Cheque', 'product_id'),
 		);
 	}
 
@@ -72,11 +73,11 @@ class Product extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'sku' => 'Sku',
-			'title' => 'Title',
-			'price' => 'Price',
-			'description' => 'Description',
-			'image' => 'Image',
+			'sku' => 'SKU',
+			'title' => 'Название',
+			'price' => 'Цена',
+			'description' => 'Описание',
+			'image' => 'Изображение',
 		);
 	}
 
